@@ -895,7 +895,7 @@ object Form1: TForm1
     Top = 0
     Width = 649
     Height = 492
-    ActivePage = TabSheet2
+    ActivePage = tsCaptureWindow
     Align = alCustom
     TabOrder = 0
     object tsCaptureWindow: TTabSheet
@@ -906,10 +906,6 @@ object Form1: TForm1
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object pnlDriverDescription: TPanel
         Left = 104
         Top = 48
@@ -938,10 +934,6 @@ object Form1: TForm1
       Font.Style = []
       ImageIndex = 1
       ParentFont = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lblCapDriverName: TLabel
         Left = 24
         Top = 43
@@ -1167,10 +1159,6 @@ object Form1: TForm1
     object tsImage: TTabSheet
       Caption = 'Image'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object imBackground: TImage
         Left = 0
         Top = 6
@@ -1187,10 +1175,6 @@ object Form1: TForm1
       Font.Style = []
       ImageIndex = 3
       ParentFont = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label20: TLabel
         Left = 24
         Top = 24
@@ -1526,10 +1510,6 @@ object Form1: TForm1
       Font.Style = []
       ImageIndex = 4
       ParentFont = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label45: TLabel
         Left = 24
         Top = 40

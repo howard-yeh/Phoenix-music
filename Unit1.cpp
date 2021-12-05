@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+
 TForm1 *Form1;
 
 //公共變數宣告。
@@ -1661,13 +1662,19 @@ LRESULT CALLBACK FrameCallbackPlayWithGecko6A( HWND hwndCapture, PVIDEOHDR lpvhd
   // 實境物件的位置為 iBlockChangeCounter[m][n] > 31 的區塊,
   // 虛擬物件的位置為( iObjectBlockX1, iObjectBlockY1 ) 與 ( iObjectBlockX2, iObjectBlockY2 ) 之間,
   // 檢查實境物件與虛擬物件的位置是否重疊 ?
+  bool touch = false;
 
   k = 0;
   for ( m = 0; m < iVideoBlockHeight; m++ )
   {
 	for ( n = 0; n < iVideoBlockWidth; n++ )
 	{
-
+		if (!( ( voGecko.bVisible ) && ( iBlockChangeCounter[m][n]>31 ) &&
+		 ( m > voGecko.iBlockY1 ) && ( n > voGecko.iBlockX1 ) &&
+		 ( m < voGecko.iBlockY2 ) && ( n < voGecko.iBlockX2 ) ))
+		 {
+			 touch = true;
+         }
 		// 第 1 個判斷式 ( iBlockChangeCounter[m][n]>31 ) 判斷實境物件的位置,
 		// 其餘 4 個判斷式是判斷虛擬物件的位置,
 		// 同時成立表示兩個物件在這個 [m, n] 區塊有交集,
@@ -1677,17 +1684,21 @@ LRESULT CALLBACK FrameCallbackPlayWithGecko6A( HWND hwndCapture, PVIDEOHDR lpvhd
 		{
 			// 啟動互動處理程序。
 			Form1->playLabel->Visible = true;
-			if(check==false)
+			if(check==false && touch == true){
 				test++;
+				music();
+				touch = false;
+			}
 			else
 				check=false;
 
-			music();
 
 			// 已經確定重疊了, 不需檢查其他區塊了! 故可以跳離 for 迴圈了。
 			m = iVideoBlockHeight;
 			n = iVideoBlockWidth;
+
 		}
+
 		if ( ( pause.bVisible ) && ( iBlockChangeCounter[m][n]>31 ) &&
 		 ( m > pause.iBlockY1 ) && ( n > pause.iBlockX1 ) &&
 		 ( m < pause.iBlockY2 ) && ( n < pause.iBlockX2 ) )
@@ -1709,6 +1720,7 @@ LRESULT CALLBACK FrameCallbackPlayWithGecko6A( HWND hwndCapture, PVIDEOHDR lpvhd
             music();
 			m = iVideoBlockHeight;
 			n = iVideoBlockWidth;
+
 		}
 
 	}
@@ -1984,4 +1996,3 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender)
 		Form1->playLabel->Font->Color = clYellow;
 }
 //---------------------------------------------------------------------------
-
